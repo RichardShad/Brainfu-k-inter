@@ -5,9 +5,9 @@
 
 void Inter(TokenList* code){
 	
-	int					Cells[1000];
-	int*					ptr = &Cells[0];
-	int*					end = ptr + 1000;
+	char					Cells[1000];
+	char*					ptr = &Cells[0];
+	char*					end = ptr + 1000;
 	bool					CycleFlag = false;
 	std::stack <TokenList*>			CycleStack;
 
@@ -21,22 +21,22 @@ void Inter(TokenList* code){
 			
 			case Token::Operation::BrClose: {
 					if(!CycleStack.empty()){
-						if(*ptr != 0)
+						if((*ptr) != 0)
 							iterator = CycleStack.top();
 							CycleStack.pop();
 							CycleFlag = true;
 					}
 					break;
-				}
+			}
 				
 			case Token::Operation::Right: {
-				if(++ptr >= end)
+				if((++ptr) >= end)
 					ptr = &Cells[0];
 				break;
 			}
 			
 			case Token::Operation::Left: {
-				if(--ptr < &Cells[0])
+				if((--ptr) < &Cells[0])
 					ptr = (end - 1);
 				break;
 			}
@@ -51,7 +51,7 @@ void Inter(TokenList* code){
 			}
 			
 			case Token::Operation::Comma: {
-				*ptr = getchar();
+				(*ptr) = getchar();
 				break;
 			}
 			
