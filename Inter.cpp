@@ -1,4 +1,3 @@
-#include <iostream>
 #include <stdio.h>
 #include <stack>
 #include "Token.cpp"
@@ -65,4 +64,5 @@ void Inter(TokenList* code){
 			iterator = iterator -> next;
 		}
 	}
+	delete code;
 }
