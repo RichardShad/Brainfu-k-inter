@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdio.h>
 #include <stack>
 #include "Token.cpp"
@@ -5,7 +6,7 @@
 
 void Inter(TokenList* code){
 	
-	char					Cells[1000];
+	char					Cells[1000] = {0};
 	char*					ptr = &Cells[0];
 	char*					end = ptr + 1000;
 	bool					CycleFlag = false;
