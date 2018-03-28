@@ -8,9 +8,11 @@ void Inter(TokenList* code){
 	int					Cells[1000];
 	int*					ptr = &Cells[0];
 	int*					end = ptr + 1000;
+	bool					CycleFlag = false;
 	std::stack <TokenList*>			CycleStack;
 
-      	for(TokenList *iterator = code; iterator != nullptr; iterator = iterator -> next){
+      	for(TokenList *iterator = code; iterator != nullptr;){
+		CycleFlag = false;
 		switch(iterator -> value.get_value()){
 			case Token::Operation::BrOpen: {
 				CycleStack.push(iterator);
@@ -22,6 +24,7 @@ void Inter(TokenList* code){
 						if(*ptr != 0)
 							iterator = CycleStack.top();
 							CycleStack.pop();
+							CycleFlag = true;
 					}
 					break;
 				}
@@ -56,6 +59,9 @@ void Inter(TokenList* code){
 				putchar(*ptr);
 				break;
 			}
+		}
+		if(!CycleFlag){
+			iterator = iterator -> next;
 		}
 	}
 }
